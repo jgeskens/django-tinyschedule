@@ -178,7 +178,7 @@ class Schedule(models.Model):
                 if self.end_date:
                     yield 'or'
                 yield 'until'
-                yield unicode(self.end_after_occurrences)
+                yield six.text_type(self.end_after_occurrences)
                 yield pluralize(self.end_after_occurrences, 'occurence,occurences')
                 yield 'took place'
         else:
