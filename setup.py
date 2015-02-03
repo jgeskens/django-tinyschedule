@@ -26,7 +26,7 @@ history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 setup(
     name='django-tinyschedule',
     version=version,
-    description="""A small package for manaing schedules in Django""",
+    description="""A small package for managing schedules in Django""",
     long_description=readme + '\n\n' + history,
     author='Jef Geskens',
     author_email='jef.geskens@gmail.com',

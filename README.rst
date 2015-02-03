@@ -11,7 +11,7 @@ django-tinyschedule
 .. image:: https://coveralls.io/repos/jgeskens/django-tinyschedule/badge.png?branch=master
     :target: https://coveralls.io/r/jgeskens/django-tinyschedule?branch=master
 
-A small package for manaing schedules in Django
+A small package for managing schedules in Django
 
 Documentation
 -------------
@@ -27,9 +27,11 @@ Install django-tinyschedule::
 
 Then use it in a project::
 
-    import django-tinyschedule
+    import schedule
 
 Features
 --------
 
-* TODO
+* Easily define schedules using the Schedule model
+* Make your own Schedule-like models by extending ScheduleBase
+* Tiny and lightweight, easy to grasp
