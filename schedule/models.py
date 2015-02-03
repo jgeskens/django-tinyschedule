@@ -73,7 +73,7 @@ def add_month_based_on_weekday(date):
     # Some magic which pushes and pulls some weeks until
     # it fits right.
     new_date = date + datetime.timedelta(weeks=4)
-    if (new_date.day + 6) / 7 < (date.day + 6) / 7:
+    if (new_date.day + 6) // 7 < (date.day + 6) // 7:
         new_date += datetime.timedelta(weeks=1)
     next_month = add_month(date, override_day=1)
     if new_date.month == (next_month.month - 1 if next_month.month > 1 else 12):
