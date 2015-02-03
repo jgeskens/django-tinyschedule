@@ -213,7 +213,7 @@ class Schedule(models.Model):
             return date + datetime.timedelta(days=self.repeat_every)
         elif self.repeat_type == ScheduleRepeatType.WEEKLY:
             current = date
-            for i in xrange(7):
+            for i in range(7):
                 current = current + datetime.timedelta(days=1)
                 if current.weekday() == 0:
                     # When we arrive on Monday, skip some weeks if needed.
@@ -222,7 +222,7 @@ class Schedule(models.Model):
                     return current
         elif self.repeat_type == ScheduleRepeatType.MONTHLY:
             current = date
-            for i in xrange(self.repeat_every):
+            for i in range(self.repeat_every):
                 # FIXME: catch ValueError and ignore bad months. Works like Google Calendar
                 current = add_month_based_on_weekday(current) \
                     if self.monthly_is_based_on_weekday \
