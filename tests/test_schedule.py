@@ -3,6 +3,7 @@ from django.test import TestCase
 from schedule.models import Schedule, ScheduleRepeatType
 
 import datetime
+import six
 
 
 class ScheduleTests(TestCase):
@@ -264,3 +265,13 @@ class ScheduleTests(TestCase):
 
     def test_occurrence_lookup(self):
         self.assertEqual(self.every2weeksmonwedfri[25], datetime.date(2014, 10, 22))
+
+    def test_description(self):
+        self.assertEqual(six.text_type(self.everymonthweekday3),
+            'every two months on the last wednesday from 01/29/2014 until 08/31/2015')
+
+        self.assertEqual(six.text_type(self.fiveoccurrences),
+            'every two months on the last wednesday from 01/29/2014 until 5 occurences took place')
+
+        self.assertEqual(six.text_type(self.yearly),
+            'every two years from 02/29/2012 until 3 occurences took place')
