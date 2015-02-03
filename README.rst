@@ -8,7 +8,7 @@ django-tinyschedule
 .. image:: https://travis-ci.org/jgeskens/django-tinyschedule.png?branch=master
     :target: https://travis-ci.org/jgeskens/django-tinyschedule
 
-.. image:: https://coveralls.io/repos/jgeskens/django-tinyschedule/badge.png?branch=master
+.. image:: https://coveralls.io/repos/jgeskens/django-tinyschedule/badge.svg?branch=master 
     :target: https://coveralls.io/r/jgeskens/django-tinyschedule?branch=master
 
 A small package for managing schedules in Django
