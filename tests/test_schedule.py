@@ -110,8 +110,8 @@ class ScheduleTests(TestCase):
 
         expected = [
             datetime.date(2014, 6, 30),
-            datetime.date(2014, 7, 02),
-            datetime.date(2014, 7, 04),
+            datetime.date(2014, 7, 2),
+            datetime.date(2014, 7, 4),
             datetime.date(2014, 7, 14),
             datetime.date(2014, 7, 16),
             datetime.date(2014, 7, 18),
