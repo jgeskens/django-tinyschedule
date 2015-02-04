@@ -68,6 +68,12 @@ class ScheduleTests(TestCase):
             repeat_type=ScheduleRepeatType.YEARLY,
             repeat_every=2)
 
+        self.yearly2 = Schedule.objects.create(
+            start_date=datetime.date(2015, 1, 1),
+            end_date=datetime.date(2038, 1, 1),
+            repeat_type=ScheduleRepeatType.YEARLY,
+            end_after_occurrences=4)
+
     def test_lookup_simple(self):
         lookup = list(Schedule.objects.lookup(datetime.date(2014, 6, 30)))
         self.assertTrue((self.simple.start_date, self.simple, 0) in lookup)
@@ -268,10 +274,33 @@ class ScheduleTests(TestCase):
 
     def test_description(self):
         self.assertEqual(six.text_type(self.everymonthweekday3),
-            'every two months on the last wednesday from 01/29/2014 until 08/31/2015')
+                         'every two months on the last wednesday from 01/29/2014 until 08/31/2015')
 
         self.assertEqual(six.text_type(self.fiveoccurrences),
-            'every two months on the last wednesday from 01/29/2014 until 5 occurences took place')
+                         'every two months on the last wednesday from 01/29/2014 until 5 occurences took place')
 
         self.assertEqual(six.text_type(self.yearly),
-            'every two years from 02/29/2012 until 3 occurences took place')
+                         'every two years from 02/29/2012 until 3 occurences took place')
+
+        self.assertEqual(six.text_type(self.every2weeksmonwedfri),
+                         'every two weeks on monday, wednesday, friday from 06/30/2014')
+
+        self.assertEqual(six.text_type(self.everymonthweekday),
+                         'every month on the 3rd wednesday from 01/15/2014 until 08/31/2015')
+
+        self.assertEqual(six.text_type(self.everymonth),
+                         'every month on the 15th from 01/15/2014 until 08/31/2014')
+
+        self.assertEqual(six.text_type(self.simple),
+                         'on 06/30/2014')
+
+        self.assertEqual(six.text_type(self.yearly2),
+                         'every year from 01/01/2015 until 01/01/2038 or until 4 occurences took place')
+
+        with self.assertRaises(ValueError):
+            self.simple.next_date(self.simple.start_date)
+
+    def test_imports(self):
+        from schedule import admin, forms, views
+
+

@@ -81,7 +81,7 @@ def add_month_based_on_weekday(date):
     elif new_date.month == (next_month.month + 1 if next_month.month < 12 else 1):
         new_date += datetime.timedelta(weeks=-1)
 
-    # If the weekdat of the original date was the last one,
+    # If the weekdate of the original date was the last one,
     # and there is some room left, add a week extra so this
     # will result in a last weekday of the month again.
     if is_last_weekday and (new_date + datetime.timedelta(weeks=1)).month == new_date.month:
@@ -126,7 +126,7 @@ class ScheduleManager(models.Manager):
             yield schedule_pair
 
 @six.python_2_unicode_compatible
-class Schedule(models.Model):
+class AbstractSchedule(models.Model):
     start_date = models.DateField(default=datetime.datetime.now)
     end_date = models.DateField(blank=True, null=True)
     end_after_occurrences = models.PositiveIntegerField(default=0)
@@ -142,6 +142,9 @@ class Schedule(models.Model):
     sunday = models.BooleanField(blank=True, default=False)
 
     objects = ScheduleManager()
+
+    class Meta:
+        abstract = True
 
     @property
     def humanized_weekdays(self):
@@ -165,14 +168,14 @@ class Schedule(models.Model):
                 else:
                     yield 'on the %s %s' % (ordinal(week_position + 1), WeekDay.choices[self.start_date.weekday()][1])
             elif self.repeat_type == ScheduleRepeatType.MONTHLY and not self.monthly_is_based_on_weekday:
-                yield 'on the '
+                yield 'on the'
                 yield ordinal(self.start_date.day)
             yield 'from'
-            yield formats.date_format(self.start_date, "SHORT_DATE_FORMAT")
+            yield formats.date_format(self.start_date, 'SHORT_DATE_FORMAT')
 
             if self.end_date is not None:
                 yield 'until'
-                yield formats.date_format(self.end_date, "SHORT_DATE_FORMAT")
+                yield formats.date_format(self.end_date, 'SHORT_DATE_FORMAT')
 
             if self.end_after_occurrences > 0:
                 if self.end_date:
@@ -234,8 +237,11 @@ class Schedule(models.Model):
                                      self.start_date.month,
                                      self.start_date.day)
             except ValueError:
-                if self.start_date.day == 29 and self.start_date.month == 2:
-                    return datetime.date(date.year + self.repeat_every, 2, 28)
-                else:
-                    raise
+                assert self.start_date.day == 29 and self.start_date.month == 2
+                return datetime.date(date.year + self.repeat_every, 2, 28)
+
         raise ValueError('repeat_type "%s" is not supported' % self.repeat_type)
+
+
+class Schedule(AbstractSchedule):
+    pass
