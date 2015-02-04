@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from schedule.models import Schedule, ScheduleRepeatType
+from tinyschedule.models import Schedule, ScheduleRepeatType
 
 import datetime
 import six
@@ -301,6 +301,6 @@ class ScheduleTests(TestCase):
             self.simple.next_date(self.simple.start_date)
 
     def test_imports(self):
-        from schedule import admin, forms, views
+        from tinyschedule import admin, forms, views
 
 

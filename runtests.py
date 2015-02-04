@@ -11,12 +11,12 @@ try:
                 "ENGINE": "django.db.backends.sqlite3",
             }
         },
-        ROOT_URLCONF="schedule.urls",
+        ROOT_URLCONF="tinyschedule.urls",
         INSTALLED_APPS=[
             "django.contrib.auth",
             "django.contrib.contenttypes",
             "django.contrib.sites",
-            "schedule",
+            "tinyschedule",
         ],
         SITE_ID=1,
         NOSE_ARGS=['-s'],

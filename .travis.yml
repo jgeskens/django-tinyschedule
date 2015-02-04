@@ -10,7 +10,7 @@ python:
 install: pip install -r requirements-test.txt
 
 # command to run tests using coverage, e.g. python setup.py test
-script: coverage run --source schedule runtests.py
+script: coverage run --source tinyschedule runtests.py
 
 # report coverage to coveralls.io
 after_success: coveralls

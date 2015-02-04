@@ -4,14 +4,14 @@
 import os
 import sys
 
-import schedule
+import tinyschedule
 
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
 
-version = schedule.__version__
+version = tinyschedule.__version__
 
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
@@ -32,7 +32,7 @@ setup(
     author_email='jef.geskens@gmail.com',
     url='https://github.com/jgeskens/django-tinyschedule',
     packages=[
-        'schedule',
+        'tinyschedule',
     ],
     include_package_data=True,
     install_requires=[

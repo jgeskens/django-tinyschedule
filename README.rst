@@ -27,7 +27,7 @@ Install django-tinyschedule::
 
 Then use it in a project::
 
-    import schedule
+    import tinyschedule
 
 Features
 --------

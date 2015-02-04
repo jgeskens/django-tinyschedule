@@ -24,7 +24,7 @@ clean-pyc:
 	find . -name '*~' -exec rm -f {} +
 
 lint:
-	flake8 schedule tests
+	flake8 tinyschedule tests
 
 test:
 	python runtests.py test
@@ -33,7 +33,7 @@ test-all:
 	tox
 
 coverage:
-	coverage run --source schedule runtests.py
+	coverage run --source tinyschedule runtests.py
 	coverage report -m
 	coverage html
 	open htmlcov/index.html
@@ -41,7 +41,7 @@ coverage:
 docs:
 	rm -f docs/django-tinyschedule.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ schedule
+	sphinx-apidoc -o docs/ tinyschedule
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	open docs/_build/html/index.html
