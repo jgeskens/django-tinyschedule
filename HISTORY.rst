@@ -17,3 +17,9 @@ History
 ++++++++++++++++++
 
 * Renamed package from ``schedule`` to a less general name ``tinyschedule`` to avoid conflicts.
+
+0.1.3 (2015-02-05)
+++++++++++++++++++
+
+* Small bugfix: if you subclass AbstractSchedule, you will now get your own class when using ``ScheduleManager.lookup(...)``
+

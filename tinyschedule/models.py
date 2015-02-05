@@ -93,7 +93,7 @@ def add_month_based_on_weekday(date):
 class ScheduleManager(models.Manager):
     def lookup(self, date, end_date=None, schedules_queryset=None):
         end_date = end_date or date
-        schedules_queryset = schedules_queryset or Schedule.objects.all()
+        schedules_queryset = schedules_queryset or self.all()
         for schedule in schedules_queryset.filter(
             start_date__gte=date,
             end_date__isnull=True,
