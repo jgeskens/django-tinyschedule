@@ -202,9 +202,12 @@ class AbstractSchedule(models.Model):
             current = self.next_date(current)
 
     def __getitem__(self, item):
-        for i, occurrence in enumerate(self.iterate_occurrences()):
-            if item == i:
-                return occurrence
+        if not isinstance(item, six.string_types):
+            for i, occurrence in enumerate(self.iterate_occurrences()):
+                if item == i:
+                    return occurrence
+        else:
+            return super(AbstractSchedule, self).__getitem__(item)
 
     def next_date(self, date):
         """

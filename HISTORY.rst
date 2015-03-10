@@ -23,3 +23,8 @@ History
 
 * Small bugfix: if you subclass AbstractSchedule, you will now get your own class when using ``ScheduleManager.lookup(...)``
 
+0.1.4 (2015-03-10)
+++++++++++++++++++
+
+* Bugfix in __getitem__
+
