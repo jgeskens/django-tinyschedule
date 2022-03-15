@@ -6,7 +6,7 @@ from .models import Schedule
 
 class ScheduleAdmin(admin.ModelAdmin):
     list_display = (
-        '__unicode__',
+        '__str__',
         'start_date',
         'end_date',
         'end_after_occurrences',
